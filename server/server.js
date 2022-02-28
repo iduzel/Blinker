@@ -5,7 +5,7 @@ require('dotenv').config()
 app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.send('HELLO')
+    res.send('HELLO FROM SERVER')
 })
 
 /* const connectToDb = require('./config/db')
