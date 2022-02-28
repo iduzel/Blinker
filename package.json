@@ -4,8 +4,12 @@
   "description": "Our social media app Blinker",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js", 
+    "server": "nodemon server/server.js", 
+    "client": "SET PORT=3001 && npm run start --prefix peoplenews", 
+    "dev": "concurrently \"npm run server\" \"npm run peoplenews\" " 
+  }, 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TanyaDT/blinker-.git"
@@ -18,7 +22,9 @@
   },
   "homepage": "https://github.com/TanyaDT/blinker-#readme",
   "dependencies": {
+    "concurrently": "^7.0.0",
     "dotenv": "^16.0.0",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "mongoose": "^6.2.3"
   }
 }
