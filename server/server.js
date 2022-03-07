@@ -3,13 +3,16 @@ const app = express()
 require('dotenv').config()
 
 app.use(express.json())
+
 app.use('/users', require('./controllers/userController'))
+
 app.get('/', (req, res) => {
     res.send('HELLO FROM SERVER')
 })
 
 const connectToDb = require('./config/db')
 connectToDb() 
+
 
 const port = process.env.PORT || 8080
 
