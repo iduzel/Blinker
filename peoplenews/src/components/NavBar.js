@@ -8,7 +8,7 @@ const Navbar = () => {
         <Nav className='container d-flex '>
             <Link to="/register">REGISTER</Link>
             <Link className='ms-2 me-2' to="/login">LOGIN</Link>
-            <Link to="/home">HOME</Link> 
+            <Link to="/">HOME</Link> 
         </Nav>
     </div>
   )
