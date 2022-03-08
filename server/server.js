@@ -5,6 +5,7 @@ require('dotenv').config()
 app.use(express.json())
 
 app.use('/users', require('./controllers/userController'))
+app.use('/blinks', require('./controllers/blinkController'))
 
 app.get('/', (req, res) => {
     res.send('HELLO FROM SERVER')
