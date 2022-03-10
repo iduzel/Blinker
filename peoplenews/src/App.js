@@ -14,9 +14,15 @@ function App() {
        <Route path='/' element={<Home />}/>
        <Route path='/register' element={<Register />}/>
        <Route path='/login' element={<Login />}/>
+       <Route path='*'  element={<Unknown />}/>
      </Routes>
     </div>
   );
+}
+
+
+function Unknown(){
+  return <h1>Error 404 | Page not found!</h1>
 }
 
 export default App;
