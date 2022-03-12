@@ -29,7 +29,7 @@ const Login = () => {
       // user logged in successfully, update context and redirect him to home
 
       setUserData({ ...response.data.user });
-      navigate("/");
+      navigate("/home");
     }
   };
   return (
