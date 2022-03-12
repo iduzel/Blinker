@@ -1,82 +1,63 @@
-import React from 'react'
-import { Button, Card, Image } from 'semantic-ui-react'
-import Img4 from './pictures/4.jpg'
+import axios from "axios";
+import React from "react";
+import { Button, Card, Image } from "semantic-ui-react";
+import Img4 from "./pictures/4.jpg";
 
-const CardBlinkDemo = () => (
-  <Card.Group>
-    <Card>
-      <Card.Content>
-        <Image
-          floated='right'
-          size='mini'
-          src={Img4}
-        />
-        <Card.Header>Steve Sanders</Card.Header>
-        <Card.Meta>Friends of Elliot</Card.Meta>
-        <Card.Description>
-          Steve wants to add you to the group <strong>best friends</strong>
-        </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
-        <div className='ui two buttons'>
-          <Button basic color='green'>
-            Approve
-          </Button>
-          <Button basic color='red'>
-            Decline
-          </Button>
-        </div>
-      </Card.Content>
-    </Card>
-    <Card>
-      <Card.Content>
-        <Image
-          floated='right'
-          size='mini'
-          src='/images/avatar/large/molly.png'
-        />
-        <Card.Header>Molly Thomas</Card.Header>
-        <Card.Meta>New User</Card.Meta>
-        <Card.Description>
-          Molly wants to add you to the group <strong>musicians</strong>
-        </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
-        <div className='ui two buttons'>
-          <Button basic color='green'>
-            Approve
-          </Button>
-          <Button basic color='red'>
-            Decline
-          </Button>
-        </div>
-      </Card.Content>
-    </Card>
-    <Card>
-      <Card.Content>
-        <Image
-          floated='right'
-          size='mini'
-          src='/images/avatar/large/jenny.jpg'
-        />
-        <Card.Header>Jenny Lawrence</Card.Header>
-        <Card.Meta>New User</Card.Meta>
-        <Card.Description>
-          Jenny requested permission to view your contact details
-        </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
-        <div className='ui two buttons'>
-          <Button basic color='green'>
-            Approve
-          </Button>
-          <Button basic color='red'>
-            Decline
-          </Button>
-        </div>
-      </Card.Content>
-    </Card>
-  </Card.Group>
-)
+const CardBlinkDemo = (props) => {
+ /*  const handleDelete = (key) => {
+    let temp = [...props.blinks];
+    temp.splice(key, 1);
 
-export default CardBlinkDemo
+    props.setBlinks(temp);
+  }; */
+
+  const handleDelete = async (id) => {
+
+    const response = await axios.delete('/blinks/delete?id=' + id)
+
+    console.log('handle delete response is', response)
+
+    if (response.data.success) {
+      // find the user in the state and delete it
+
+      const temp = [...props.blinks]
+
+      const idx = temp.findIndex(item => item._id == id )
+
+      if (idx > -1) temp.splice(idx, 1)
+
+      props.setBlinks([...temp])
+
+    } else {
+      alert('Error deleting user')
+    }
+  }
+  return (
+    <Card.Group className="card-blink-demo w-100 d-flex">
+      <Card className="w-100">
+        <Card.Content>
+          <Image floated="right" size="mini" src={Img4} />
+          <Card.Header>{props.item.owner.username}</Card.Header>
+          <Card.Meta>{props.item.owner.email}</Card.Meta>
+          <Card.Description className="fw-bolder fs-1 w-100 bg-success">
+            {props.item.text}
+          </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <div className="ui two buttons">
+            <Button basic color="green">
+              Approve
+            </Button>
+            <Button 
+            onClick={() => handleDelete(props.item._id)} 
+            basic color="red">
+              DELETE
+            </Button>
+          </div>
+        </Card.Content>
+      </Card>
+    </Card.Group>
+  );
+};
+
+export default CardBlinkDemo;
