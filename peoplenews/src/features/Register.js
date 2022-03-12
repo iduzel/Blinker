@@ -20,7 +20,7 @@ const Register = () => {
     const response = await axios.post("/users/register", data);
 
     console.log("response is ", response);
-    navigate("/login");
+    navigate("/");
   };
   return (
     <div className="container register">
