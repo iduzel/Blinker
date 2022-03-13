@@ -17,7 +17,8 @@ const Home = () => {
   const [newBlink, setNewBlink] = useState("");
   const [blinks, setBlinks] = useState([]);
 
-  console.log('New blink is: ', newBlink)
+
+  console.log("New blink is: ", newBlink);
 
   // LIST
   // get data from db an dput it into our array state (posts)
@@ -28,14 +29,16 @@ const Home = () => {
       const response = await axios.get("/blinks/list");
 
       console.log("home loading: response is", response);
+      let temp = [...response.data];
+      temp.reverse();
 
-      setBlinks([...response.data]);
+      setBlinks(temp);
     };
 
     getData();
   }, []);
 
-  console.log('blinks are: ', blinks) 
+  console.log("blinks are: ", blinks);
 
   // ADD BLINK
   const handleSave = async () => {
@@ -43,7 +46,7 @@ const Home = () => {
 
     const data = {
       owner: userData._id,
-      text: newBlink,    
+      text: newBlink,
     };
 
     console.log("Home: handleSave: data is", data);
@@ -51,17 +54,10 @@ const Home = () => {
 
     console.log("save post: response is", response);
 
-    if (response.data.success) setBlinks([response.data.blink, ...blinks ]);
-
-    setNewBlink(""); 
-
-   
-  
+    if (response.data.success) setBlinks([response.data.blink, ...blinks]);
+    setNewBlink("");
   };
 
- 
-
-  
   return (
     <div className="home border border-1  container d-flex flex-column align-items-center ">
       <div className="border border-1 w-100 blink container d-flex flex-column align-items-center ">
@@ -78,7 +74,7 @@ const Home = () => {
             <img className="blink-user-img" src={img1} alt="user-img" />
           </Col>
           <Col className="col-10">
-            <MyTextarea  setData={setNewBlink}/>
+            <MyTextarea setData={setNewBlink} />
           </Col>
         </Row>
         <Row className="w-100">
@@ -95,18 +91,14 @@ const Home = () => {
 
       <h1 className="text-primary fs-2 mt-3">150 BLINKS</h1>
 
-      {
-        blinks?.reverse().map((item, index) => (
-          
-         <CardBlinkDemo 
-         key={index} 
-         item={item}
-         blinks={blinks}
-         setBlinks={setBlinks}/>
-        ))
-      }
-
-   
+      {blinks?.map((item, index) => (
+        <CardBlinkDemo
+          key={index}
+          item={item}
+          blinks={blinks}
+          setBlinks={setBlinks}
+        />
+      ))}
     </div>
   );
 };

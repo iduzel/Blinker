@@ -1,58 +1,90 @@
 // REGISTER
 
-.register { 
-   margin-top: 5rem;
-    width: 400px;
-    padding: 3rem;
-    border: 1px dotted gray;
-    border-radius: 5px;
-   
+.register {
+  margin-top: 5rem;
+  width: 400px;
+  padding: 3rem;
+  border: 1px dotted gray;
+  border-radius: 5px;
 }
-
-
 
 // LOGIN
 
 .login {
-    margin-top: 5rem;
-    width: 400px;
-    padding: 3rem;
-    border: 1px dotted gray;
-    border-radius: 5px;
+  margin-top: 5rem;
+  width: 400px;
+  padding: 3rem;
+  border: 1px dotted gray;
+  border-radius: 5px;
+}
+
+.small {
+}
+
+.small:hover {
+  cursor: pointer;
 }
 
 // NAVBAR
 
 .navbar-link {
-   color: black;
-   text-decoration: none; 
+  color: black;
+  text-decoration: none;
+}
+.logo {
+  width: 300px;
+  height: 150px;
+  border-radius: 10px;
+}
+
+.navbar-logo {
+  background-color: #5d3f9ebd;
 }
 
 // HOME.JS.
 .home {
-    width: 600px;
+  width: 600px;
 }
 .blink-textarea {
-    width: 100%;
-    height: 50px;
-    resize: none;
-    outline: none;
+  width: 100%;
+  height: 50px;
+  resize: none;
+  outline: none;
 }
 
 #autoresizing {
-    display: block;
-    overflow: hidden;
-    resize: none;
+  display: block;
+  overflow: hidden;
+  resize: none;
 }
 .blink-user-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 // CARD BLINK DEMO
 
 .card-blink-demo {
-    min-height: 100px;
+  min-height: 100px;
 }
 
+// LOGOUT SHOW HIDE
+
+.show {
+  visibility: visible;
+}
+.hide {
+  visibility: hidden;
+}
+
+.color {
+  background-color: #624b92c4;
+}
+
+.main-row {
+  height: 100%;
+}
+
+.main-col {
+}

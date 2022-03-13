@@ -1,38 +1,34 @@
 import React, { useContext } from "react";
 import { Button, Col, Nav, Row } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "./context";
+import logo from "../components/pictures/5.jpg";
+import '../features/features.scss'
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { userData, setUserData } = useContext(UserContext);
+  const { userData, setUserData, showClass, setShowClass } =
+    useContext(UserContext);
 
   const handleLogout = () => {
     // clear the context
     setUserData(null);
     // redirect user to home
     navigate("/");
+    setShowClass("hide");
   };
   return (
-    <div className="bg-danger fs-1 fw-bold">
+    <div className="navbar-logo fs-1 fw-bold mt-5 shadow-lg">
       <Row>
         <Col className="col-11">
           <Nav className="container d-flex ">
-            <Link className="navbar-link" to="/register">
-              REGISTER
-            </Link>
-            <Link className="navbar-link ms-5 me-5" to="/">
-              LOGIN
-            </Link>
-            <Link className="navbar-link" to="/home">
-              HOME
-            </Link>
+            <img className="logo" src={logo} alt="logo" />
           </Nav>
         </Col>
         <Col className="col-1">
-        <p>
-        <Button onClick={handleLogout}>Logout</Button>
-      </p>
+          <Button className={showClass} onClick={handleLogout}>
+            Logout
+          </Button>
         </Col>
       </Row>
     </div>

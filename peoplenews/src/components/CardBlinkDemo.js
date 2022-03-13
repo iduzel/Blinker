@@ -26,7 +26,7 @@ const CardBlinkDemo = (props) => {
 
       if (idx > -1) temp.splice(idx, 1)
 
-      props.setBlinks([...temp])
+      props.setBlinks(temp)
 
     } else {
       alert('Error deleting user')

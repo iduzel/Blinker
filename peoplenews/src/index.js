@@ -8,7 +8,6 @@ import reportWebVitals from "./reportWebVitals";
 import UserProvider from "./components/context";
 
 
-
 ReactDOM.render(
   <UserProvider>
     <BrowserRouter>
