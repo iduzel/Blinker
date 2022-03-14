@@ -6,7 +6,7 @@ import axios from "axios";
 import { UserContext } from "../components/context";
 
 const Login = () => {
-  const { setUserData,  setShowClass, setUsername } = useContext(UserContext);  
+  const { setUserData,  setShowClass, setUsername, userId, setUserId } = useContext(UserContext);  
 
   const [data, setData] = useState({
     username: "",
@@ -32,6 +32,9 @@ const Login = () => {
       navigate("/home");
       setShowClass('show')
       setUsername(data.username || data.email)
+      setUserId(response.data.user._id)
+      console.log('ID is :', response.data.user._id)
+
       
     }
   };
