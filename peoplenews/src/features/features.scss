@@ -73,6 +73,16 @@
   }
 }
 
+.hideDelete {
+
+  background-color: aqua;
+  visibility: hidden;
+}
+
+.showDelete {
+  visibility: visible;
+}
+
 // CARD BLINK DEMO
 
 .card-blink-demo {
