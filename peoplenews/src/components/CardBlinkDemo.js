@@ -1,37 +1,32 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Button, Card, Image } from "semantic-ui-react";
 import Img4 from "./pictures/4.jpg";
+import "../features/features.scss";
+import { UserContext } from "./context";
 
 const CardBlinkDemo = (props) => {
- /*  const handleDelete = (key) => {
-    let temp = [...props.blinks];
-    temp.splice(key, 1);
-
-    props.setBlinks(temp);
-  }; */
+  const { userId } = useContext(UserContext);
 
   const handleDelete = async (id) => {
+    const response = await axios.delete("/blinks/delete?id=" + id);
 
-    const response = await axios.delete('/blinks/delete?id=' + id)
-
-    console.log('handle delete response is', response)
+    console.log("handle delete response is", response);
 
     if (response.data.success) {
       // find the user in the state and delete it
 
-      const temp = [...props.blinks]
+      const temp = [...props.blinks];
 
-      const idx = temp.findIndex(item => item._id == id )
+      const idx = temp.findIndex((item) => item._id == id);
 
-      if (idx > -1) temp.splice(idx, 1)
+      if (idx > -1) temp.splice(idx, 1);
 
-      props.setBlinks(temp)
-
+      props.setBlinks(temp);
     } else {
-      alert('Error deleting user')
+      alert("Error deleting user");
     }
-  }
+  };
   return (
     <Card.Group className="card-blink-demo w-100 d-flex">
       <Card className="w-100">
@@ -48,9 +43,14 @@ const CardBlinkDemo = (props) => {
             <Button basic color="green">
               Approve
             </Button>
-            <Button 
-            onClick={() => handleDelete(props.item._id)} 
-            basic color="red">
+            <Button
+              className={
+                props.item.owner._id == userId ? "showDelete" : "hideDelete"
+              }
+              onClick={() => handleDelete(props.item._id)}
+              basic
+              color="red"
+            >
               DELETE
             </Button>
           </div>
