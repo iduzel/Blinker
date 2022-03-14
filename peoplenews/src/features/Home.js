@@ -58,6 +58,12 @@ const Home = () => {
     setNewBlink("");
   };
 
+  // three dots 
+  const handleThreeDots = () => {
+
+    console.log('HELLO FROM § DOTS')
+  }
+
   return (
     <div className="home border border-1  container d-flex flex-column align-items-center ">
       <div className="border border-1 w-100 blink container d-flex flex-column align-items-center ">
@@ -66,7 +72,7 @@ const Home = () => {
             <h2 className="fw-bold">Home</h2>
           </Col>
           <Col className="">
-            <p className="fs-1 text-end">...</p>
+            <p onMouseOver={handleThreeDots} className="threedots fs-1 text-end">...</p>
           </Col>
         </Row>
         <Row className="mt-2 d-flex justify-content-between  w-100">
