@@ -5,6 +5,7 @@ import Navbar from "./components/NavBar";
 import Home from "./features/Home";
 import Login from "./features/Login";
 import Register from "./features/Register";
+import Unknown from "./features/Unknown";
 
 function App() {
   return (
@@ -28,8 +29,4 @@ function App() {
   );
 }
 
-function Unknown() {
-  return <h1>Error 404 | Page not found!</h1>;
-}
-
-export default App;
+export default App
