@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, FormText } from "react-bootstrap";
 import "./features.scss";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../components/context";
 
 const Login = () => {
-  const { setUserData } = useContext(UserContext);
+  const { setUserData,  setShowClass, setUsername } = useContext(UserContext);  
 
   const [data, setData] = useState({
     username: "",
@@ -26,10 +26,13 @@ const Login = () => {
     console.log("response is ", response);
 
     if (response.data.success) {
-      // user logged in successfully, update context and redirect him to home
+      // user logged in successfully, update context and redirect user to home
 
       setUserData({ ...response.data.user });
       navigate("/home");
+      setShowClass('show')
+      setUsername(data.username || data.email)
+      
     }
   };
   return (
@@ -69,7 +72,14 @@ const Login = () => {
           Login
         </Button>
       </Form>
-      <Link to="/forgotpass">Forgot pass</Link>
+      <Link  to="/forgotpass">Forgot pass</Link>
+      <Form.Group>
+        <FormText>
+           Don't you have an account? No Problem. 
+           <small onClick={() => navigate('/register')} className="small text-primary fs-5 ">Register</small> 
+        </FormText>
+        
+       </Form.Group>
     </div>
   );
 };
