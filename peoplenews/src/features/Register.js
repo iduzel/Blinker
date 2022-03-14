@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, FormText } from "react-bootstrap";
 import "./features.scss";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   let navigate = useNavigate();
@@ -12,7 +12,6 @@ const Register = () => {
     password: "",
   });
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("data is", data);
@@ -20,7 +19,7 @@ const Register = () => {
     const response = await axios.post("/users/register", data);
 
     console.log("response is ", response);
-    navigate("/login");
+    navigate("/");
   };
   return (
     <div className="container register">
@@ -71,11 +70,9 @@ const Register = () => {
         </Form>
       </Container>
 
-      <div>
-        <h2>username: {data.username}</h2>
-        <h2>mail: {data.email}</h2>
-        <h2>password: {data.pass}</h2>
-      </div>
+      <Form.Group className="mt-3 container">
+        <FormText>Already have an account! <small><Link to='/'>Login</Link></small></FormText>
+      </Form.Group>
     </div>
   );
 };
