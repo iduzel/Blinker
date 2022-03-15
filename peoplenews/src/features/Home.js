@@ -56,6 +56,7 @@ const Home = () => {
     const data = {
       owner: userData._id,
       text: newBlink,
+      
     };
 
     console.log("Home: handleSave: data is", data);
@@ -91,7 +92,7 @@ const Home = () => {
             <img className="blink-user-img" src={img1} alt="user-img" />
           </Col>
           <Col className="col-10">
-            <MyTextarea setData={setNewBlink} />
+            <MyTextarea setData={setNewBlink} data={newBlink}/>
           </Col>
         </Row>
         <Row className="w-100">
