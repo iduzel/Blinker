@@ -6,7 +6,8 @@ import "../features/features.scss";
 import { UserContext } from "./context";
 
 const CardBlinkDemo = (props) => {
-  const { userId } = useContext(UserContext);
+
+  const { userId, userData, setUserData } = useContext(UserContext);
   const [singleBlinkClass, setSingleBlankClass] = useState("hideDelete");
 
   const handleDelete = async (id) => {
@@ -34,6 +35,31 @@ const CardBlinkDemo = (props) => {
     console.log(('id', id))
 
    props.setBlinks(props.blinks.filter((item, index) => item.owner._id == id)) 
+  }
+
+
+  const handleLikeClick = async (postid) => {
+
+    console.log('postid: ', postid)
+    console.log('userData_id is : ', userData._id)
+    
+    const response = await axios.put(
+      `/blinks/likeadd/${postid}/${userData._id}`
+    );
+
+    console.log("like add reponse is: ", response);
+
+    if (response.data.success) {
+      const postIdx = props.blinks.findIndex((item) => item._id == postid);
+      console.log('postIdx', postIdx)
+      console.log('item._id',props.blinks[postIdx]._id)
+
+      const oldPosts = [...props.blinks];
+
+      oldPosts[postIdx].likes = [...response.data.post.likes];
+
+      props.setBlinks([...oldPosts]);
+    }
   }
 
  
@@ -79,9 +105,9 @@ const CardBlinkDemo = (props) => {
             <span
               style={{
                 cursor: "pointer",
-                /* color: item.likes.includes(userData._id) ? "red" : "black", */
+             color: props.item.likes.includes(userData._id) ? "red" : "black" 
               }}
-             /*  onClick={() => handleLikeClick(item._id)} */
+              onClick={() => handleLikeClick(props.item._id)}
             >
               Like
             </span>
