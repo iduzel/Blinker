@@ -101,7 +101,7 @@ const CardBlinkDemo = (props) => {
         </Card.Content>
         <Card.Content extra>
         <hr style={{ width: "90%" }} />
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <div style={{ display: "flex", justifyContent: "" }}>
             <span
               style={{
                 cursor: "pointer",
@@ -109,11 +109,13 @@ const CardBlinkDemo = (props) => {
               }}
               onClick={() => handleLikeClick(props.item._id)}
             >
-              Like
+              <i className="heart outline icon"></i>
             </span>
-            <div>Likes: {/* {item.likes.length} */}</div>
-            <div>Comments: 0</div>
+            
+            <div>{props.item.likes.length}</div>
+           
           </div>
+          <div>Comments: 0</div>
         </Card.Content>
       </Card>
     </Card.Group>
