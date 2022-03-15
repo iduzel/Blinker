@@ -13,6 +13,10 @@ const BlinkSchema = new Schema({
     type: String,
   },
 
+    likes: {
+        type: []
+    }
+
 
 
 });
