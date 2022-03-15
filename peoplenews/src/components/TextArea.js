@@ -18,6 +18,12 @@ const MyTextarea = (props) => {
   return (     
       <Textarea
 
+        onKeyDown={(e) => {
+          if (e.keyCode === 13){
+            props.setData(`${props.data}\n`)
+          } 
+        }}
+        value= {props.data}
         className="textarea w-100 border border-0 w-100 blink-textarea "       
         id="my-textarea"
         maxLength="480"
