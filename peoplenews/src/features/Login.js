@@ -31,7 +31,7 @@ const Login = () => {
       setUserData({ ...response.data.user });
       navigate("/home");
       setShowClass('show')
-      setUsername(data.username || data.email)
+      setUsername(response.data.user.username)
       setUserId(response.data.user._id)
       console.log('ID is :', response.data.user._id)
 
