@@ -1,3 +1,9 @@
+//general
+
+.hover {
+  cursor: pointer;
+}
+
 // REGISTER
 
 .register {
@@ -26,8 +32,10 @@
 }
 
 // NAVBAR
+.navbar-logo {
+  background-color: #5d3f9ebd;
 
-.navbar-link {
+  .navbar-link {
   color: black;
   text-decoration: none;
 }
@@ -37,13 +45,27 @@
   border-radius: 10px;
 }
 
-.navbar-logo {
-  background-color: #5d3f9ebd;
-}
+
 
 .demo {
-  
   box-shadow: #624b92c4 1px 5px 5px, 1px 1px 1px;
+}
+
+.userloginout {
+  background-color: #372075b9;
+  width: 300px;
+  height: 150px;
+  border-radius: 10px;
+  
+}
+h3 {
+  color: #67d9ec;
+}
+
+h3:hover {
+    color: red;
+}
+
 }
 
 // HOME.JS.
@@ -66,30 +88,80 @@
     border-radius: 50%;
   }
   .threedots {
-
   }
   .threedots:hover {
     cursor: pointer;
   }
+
+  h2:hover {
+    cursor: pointer;
+  }
+
+  .blink-button {
+    background-color: #624b92c4;
+    color: #67d9ec;
+  }
+
+}
+
+
+// hide show delete 
+.hideDelete {
+  visibility: hidden;
+}
+
+.showDelete {
+  visibility: visible;
 }
 
 // CARD BLINK DEMO
 
 .card-blink-demo {
   min-height: 100px;
+  position: relative;
+
+  .single-blink-dots {
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    opacity: 0.8;
+    font-size: 2rem;
+  }
+  .single-blink-dots:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+  .deleteText {
+    font-size: 12px;
+    margin-top: -20px;
+    margin-right: -10px;
+  }
+  .card-img {
+    width:30px;
+    height:30px;
+    object-fit:cover;
+    border-radius:50%;
+  }
 }
 
 // LOGOUT SHOW HIDE
 
 .show {
   visibility: visible;
+  cursor: pointer;
+  color: #67d9ec;
 }
+.show:hover {
+  
+}
+
 .hide {
   visibility: hidden;
 }
 
 .color {
   background-color: #624b92c4;
+  color: #67d9ec;
 }
 
 .main-row {

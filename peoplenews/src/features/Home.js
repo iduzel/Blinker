@@ -5,7 +5,7 @@ import { UserContext } from "../components/context";
 import Blink from "./Blink";
 import CardBlinkDemo from "../components/CardBlinkDemo";
 import { Col, Row } from "react-bootstrap";
-import img1 from "../components/pictures/1.jpg";
+import img1 from "../components/pictures/5.jpg";
 import MyTextarea from "../components/TextArea";
 
 const Home = () => {
@@ -16,6 +16,12 @@ const Home = () => {
   // States
   const [newBlink, setNewBlink] = useState("");
   const [blinks, setBlinks] = useState([]);
+  const [homeFlag, setHomeFlag] = useState(false)
+  const [filteredBlinks, setFilteredBlinks] = useState([])
+
+
+
+  console.log('filteredBlinks' , filteredBlinks)
 
 
   console.log("New blink is: ", newBlink);
@@ -33,12 +39,15 @@ const Home = () => {
       temp.reverse();
 
       setBlinks(temp);
+      setHomeFlag(false)
     };
 
     getData();
-  }, []);
+  }, [homeFlag]);
+
 
   console.log("blinks are: ", blinks);
+
 
   // ADD BLINK
   const handleSave = async () => {
@@ -65,11 +74,13 @@ const Home = () => {
   }
 
   return (
-    <div className="home border border-1  container d-flex flex-column align-items-center ">
-      <div className="border border-1 w-100 blink container d-flex flex-column align-items-center ">
+    <div className="home  d-flex flex-column align-items-center ">
+      <div className="border-bottom w-100 blink  d-flex flex-column align-items-center">
         <Row className=" d-flex justify-content-between  w-100">
           <Col>
-            <h2 className="fw-bold">Home</h2>
+            <h2
+            onClick={() => setHomeFlag(true)}
+            className="fw-bold cursor-pointer">Home</h2>
           </Col>
           <Col className="">
             <p onMouseOver={handleThreeDots} className="threedots fs-1 text-end">...</p>
@@ -86,7 +97,7 @@ const Home = () => {
         <Row className="w-100">
           <Col className="col-12 text-end">
             <button
-              className="m-2 btn btn-primary w-25 fs-4 text-dark text-center rounded-pill"
+              className="blink-button m-2 btn w-25 fs-4  text-center rounded-pill"
               onClick={handleSave}
             >
               Blink
@@ -95,7 +106,7 @@ const Home = () => {
         </Row>
       </div>
 
-      <h1 className="text-primary fs-2 mt-3">150 BLINKS</h1>
+      <h2 className="color w-100 fs-4 mt-3 mb-3 ps-2 ">{blinks.length} Blinks</h2>
 
       {blinks?.map((item, index) => (
         <CardBlinkDemo

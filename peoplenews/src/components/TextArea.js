@@ -20,7 +20,7 @@ const MyTextarea = (props) => {
 
         className="textarea w-100 border border-0 w-100 blink-textarea "       
         id="my-textarea"
-        maxLength="280"
+        maxLength="480"
         name="pet[notes]"
         onChange={(e) => props.setData(e.target.value)}
         placeholder="What's happening?"
