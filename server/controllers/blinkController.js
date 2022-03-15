@@ -17,7 +17,7 @@ router.post("/add", async (req, res) => {
     const blink = await newBlink
       .save()
       .then((item) =>
-        item.populate({ path: "owner", select: "username email" })
+        item.populate({ path: "owner", select: "username email image" })
       );
 
     if (!blink) return res.send({ success: false, errorId: 2 });
@@ -34,7 +34,7 @@ router.get("/list", async (req, res) => {
   try {
     const blinks = await Blink.find().limit(50).populate({
       path: "owner",
-      select: "username email",
+      select: "username email image",
     });
 
     res.send(blinks);
@@ -49,7 +49,7 @@ router.get("/list", async (req, res) => {
 // Delete user from DB
 router.delete('/delete', async (req, res) => {
 
-  console.log('Add blink qurey is', req.query)
+  console.log('Add blink query is', req.query)
   try {
 
       const deletedBlink = await Blink.findByIdAndDelete(req.query.id)
@@ -64,7 +64,7 @@ router.delete('/delete', async (req, res) => {
       
   } catch (error) {
       
-      console.log('Delete user ERROR:', error.message)
+      console.log('Delete blink ERROR:', error.message)
       res.send(error.message)
   }
 })

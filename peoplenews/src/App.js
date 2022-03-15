@@ -2,6 +2,7 @@ import { Col, Row } from "react-bootstrap";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/NavBar";
+import Profile from "./components/Profile";
 import Home from "./features/Home";
 import Login from "./features/Login";
 import Register from "./features/Register";
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<Unknown />} />
           </Routes>
         </Col>
