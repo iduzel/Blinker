@@ -1,7 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+.font-family {
+  font-family: 'Dancing Script', cursive;
+}
 //general
 
 .hover {
   cursor: pointer;
+}
+
+.main-row {
+  
+  flex-grow: 1;
+  margin-bottom: 50px;
+}
+
+.main-col {
+}
+.form-control::-webkit-input-placeholder {
+  font-family: FontAwesome;
+  font-weight: lighter;
+  font-size: smaller;
+  overflow: visible;
+  vertical-align: top;
+  display: inline-block !important;
+  padding-left: 5px;
+  padding-top: 2px;
+  color: hsl(9, 40%, 60%);
+  letter-spacing: 0.2em;
 }
 
 // REGISTER
@@ -12,16 +38,40 @@
   padding: 3rem;
   border: 1px dotted gray;
   border-radius: 5px;
+
+  .register-button {
+    background-color: #624b92c4;
+    color: #67d9ec;
+  }
+  .register-button:hover {
+    background-color: #624b92c4;
+    color: #67d9ec;
+  }
 }
 
 // LOGIN
 
 .login {
+  
   margin-top: 5rem;
   width: 400px;
   padding: 3rem;
   border: 1px dotted gray;
   border-radius: 5px;
+
+  .login-button {
+    background-color: #624b92c4;
+    color: #67d9ec;
+    font-size: large;
+    
+  }
+  .login-button:hover {
+
+    background-color: #624b92c4;
+    color: #67d9ec;
+   
+  }
+
 }
 
 .small {
@@ -36,36 +86,35 @@
   background-color: #5d3f9ebd;
 
   .navbar-link {
-  color: black;
-  text-decoration: none;
-}
-.logo {
-  width: 300px;
-  height: 150px;
-  border-radius: 10px;
-}
+    color: black;
+    text-decoration: none;
+  }
+  .logo {
+    width: 300px;
+    height: 150px;
+    border-radius: 10px;
+  }
 
+  .demo {
+    box-shadow: #624b92c4 1px 5px 5px, 1px 1px 1px;
+  }
 
+  .userloginout {
+    background-color: #372075b9;
+    width: 300px;
+    height: 150px;
+    border-radius: 10px;
+  }
+  h3 {
+    color: #67d9ec;
+  }
 
-.demo {
-  box-shadow: #624b92c4 1px 5px 5px, 1px 1px 1px;
-}
-
-.userloginout {
-  background-color: #372075b9;
-  width: 300px;
-  height: 150px;
-  border-radius: 10px;
-  
-}
-h3 {
-  color: #67d9ec;
-}
-
-h3:hover {
+  h3:hover {
     color: red;
-}
-
+  }
+  .main-title {
+    font-size: 6rem;
+  }
 }
 
 // HOME.JS.
@@ -101,11 +150,9 @@ h3:hover {
     background-color: #624b92c4;
     color: #67d9ec;
   }
-
 }
 
-
-// hide show delete 
+// hide show delete
 .hideDelete {
   visibility: hidden;
 }
@@ -137,10 +184,10 @@ h3:hover {
     margin-right: -10px;
   }
   .card-img {
-    width:30px;
-    height:30px;
-    object-fit:cover;
-    border-radius:50%;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
   }
 }
 
@@ -152,7 +199,6 @@ h3:hover {
   color: #67d9ec;
 }
 .show:hover {
-  
 }
 
 .hide {
@@ -164,15 +210,21 @@ h3:hover {
   color: #67d9ec;
 }
 
-.main-row {
-  height: 100%;
-}
-
-.main-col {
-}
-
-
 .blink-textarea {
   white-space: nowrap;
-  overflow:hidden;
+  overflow: hidden;
+}
+
+// footer
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  height: 50px;
+
+  .footer-link {
+    color: #67d9ec;
+  }
 }

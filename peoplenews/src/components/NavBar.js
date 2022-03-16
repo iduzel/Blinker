@@ -33,7 +33,7 @@ const Navbar = () => {
             </Link>
           </Nav>
         </Col>
-        <Col className=""></Col>
+        <Col className="main-title color font-family  d-flex justify-content-center align-items-center">You are the news</Col>
 
         <Col
           onMouseLeave={() => setLogoutClass("hide")}
