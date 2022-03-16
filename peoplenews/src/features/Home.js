@@ -75,8 +75,8 @@ const Home = () => {
   }
 
   return (
-    <div className="home  d-flex flex-column align-items-center ">
-      <div className="border-bottom w-100 blink  d-flex flex-column align-items-center">
+    <div className="home  d-flex flex-column align-items-center justify-content-center ">
+      <div className="border-bottom w-100 blink  d-flex flex-column align-items-center justify-content-center">
         <Row className=" d-flex justify-content-between  w-100">
           <Col>
             <h2
