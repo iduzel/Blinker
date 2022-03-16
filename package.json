@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server.js", 
-    "server": "nodemon server/server.js", 
-    "peoplenews": "npm run start --prefix peoplenews", 
-    "dev": "concurrently \"npm run server\" \"npm run peoplenews\" " 
-  }, 
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
+    "peoplenews": "npm run start --prefix peoplenews",
+    "dev": "concurrently \"npm run server\" \"npm run peoplenews\" "
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TanyaDT/blinker-.git"
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/TanyaDT/blinker-#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "concurrently": "^7.0.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",

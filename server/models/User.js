@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 const{Schema}= mongoose
 
+const bcrypt = require('bcrypt')
+const saltRounds = 10;
+
+
 const userSchema = new Schema({
     username: {
         type: String,
@@ -17,5 +21,27 @@ const userSchema = new Schema({
         required: true,
     }
 })
+
+userSchema.pre('save', function(next) {
+    const user=this; 
+    if(user.isModified('password')) {
+        bcrypt.genSalt(saltRounds, function(err, salt) {
+            if(err) return next(err);
+            bcrypt.hash(user.password, salt, function (err, hash) {
+                if(err) return next(err)
+                user.password = hash;
+                next(); 
+            })
+        })
+    } else {
+        next()
+    }
+})
+userSchema.methods.comparePassword = async (providedPass, dbPass) => {
+
+    console.log('compare pass method: passwords are', providedPass, dbPass)
+
+    return await bcrypt.compare(providedPass, dbPass)
+}
 
 module.exports= mongoose.model('User', userSchema)

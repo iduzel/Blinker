@@ -4,7 +4,7 @@ import "./features.scss";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../components/context";
-import { FaUser } from 'react-icons/fa'
+
 
 const Login = () => {
   const { setUserData, setShowClass, setUsername, userId, setUserId } =
@@ -57,7 +57,7 @@ const Login = () => {
             placeholder="&#61447;  Enter username"
             
           />
-          
+        
            
         </Form.Group>
 
