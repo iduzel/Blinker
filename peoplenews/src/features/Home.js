@@ -17,11 +17,8 @@ const Home = () => {
   const [newBlink, setNewBlink] = useState("");
   const [blinks, setBlinks] = useState([]);
   const [homeFlag, setHomeFlag] = useState(false)
-  const [filteredBlinks, setFilteredBlinks] = useState([])
+  const [blinksOwner, setBlinksOwner] = useState('all')
 
-
-
-  console.log('filteredBlinks' , filteredBlinks)
 
 
   console.log("New blink is: ", newBlink);

@@ -69,7 +69,7 @@ const CardBlinkDemo = (props) => {
     <Card.Group className=" card-blink-demo w-100 d-flex">
       <Card className=" m-0 w-100">
         <Card.Content>
-          <Image className="card-img" floated="left" src={Img4} />
+          <Image className="card-img" floated="left" src={props.item.owner.image} />
           <Card.Header className="hover" onClick={() => handleUserBlinks(props.item.owner._id)} >
             {props.item.owner.username}
           </Card.Header>

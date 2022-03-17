@@ -19,6 +19,15 @@ const userSchema = new Schema({
     password:{
         type: String,
         required: true,
+    },
+    age: {
+        type: Number
+    },
+    address: {
+        type: String
+    },
+    image: {
+        type: String
     }
 })
 
