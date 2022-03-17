@@ -1,10 +1,42 @@
 const express = require("express");
 const User = require("../models/User");
 const router = express.Router();
+const multer = require('multer')
 
-router.get("/", (req, res) => {
-  res.send("HELLO UUUSSSEEERRR");
-});
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      
+    cb(null, './server/uploads')
+  },
+
+  filename: function (req, file, cb) {
+    
+      console.log('inside storage: FILE is', file)
+
+      let extension = '';
+
+      if (file.mimetype.includes('image')) {
+          
+          extension = file.mimetype.slice(6)
+          
+          if (extension === 'jpeg') extension = 'jpg';
+  
+          const filename = `${new Date().toISOString()}-${file.originalname}.${extension}`
+          console.log('filename is', filename)
+          cb(null, filename)
+
+      } else {
+          cb('Not an image file')
+      }
+
+
+  },
+
+})
+
+const uploadAdvanced = multer({ storage: storage })
+
 router.post("/register", async (req, res) => {
   try {
     console.log("req.body is", req.body);
@@ -57,5 +89,32 @@ router.post("/login", async (req, res) => {
     res.send(error.message);
   }
 });
+
+router.patch('/profile', uploadAdvanced.single('image'), async (req, res) => {
+
+  try {
+      
+      console.log('req.body is', req.body)
+      console.log('req.file is', req.file)
+
+      const {email, username, _id} = req.body
+
+      if (!(email || username)) return res.send({success: false, errorId: 1})
+
+      req.body.image = req.file.filename
+
+      const user = await User.findByIdAndUpdate(_id, req.body, {new: true}).select('-__v -pass')
+
+      console.log('Profile: user is', user)
+
+      if (!user) return res.send({success: false, errorId: 2})
+
+      res.send({success: true, user})
+  } catch (error) {
+      
+      console.log('Register ERROR:', error.message)
+      res.send(error.message)
+  }
+})
 
 module.exports = router;
