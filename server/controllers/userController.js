@@ -3,7 +3,42 @@ const User = require("../models/User");
 const router = express.Router();
 const multer = require('multer')
 
+//*************************************** */  
 
+// MULTER setup for cloudinary
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+ 
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
+})
+
+const storageCloudinary = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'Blinker',
+    format: async (req, file) => {
+
+        let extension = '';
+
+        if (file.mimetype.includes('image')) {
+            
+            extension = file.mimetype.slice(6)
+            
+            if (extension === 'jpeg') extension = 'jpg';
+        }
+        
+       return extension
+
+    }, 
+    public_id: (req, file) => `${req.body._id}-${Date.now()}-${file.originalname}`,
+  },
+});
+ 
+const uploadCloudinary = multer({ storage: storageCloudinary });
+//*************************************** */  
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
       
@@ -90,7 +125,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.patch('/profile', uploadAdvanced.single('image'), async (req, res) => {
+router.patch('/profile', uploadCloudinary.single('image'), async (req, res) => {
 
   try {
       
@@ -101,7 +136,8 @@ router.patch('/profile', uploadAdvanced.single('image'), async (req, res) => {
 
       if (!(email || username)) return res.send({success: false, errorId: 1})
 
-      req.body.image = req.file.filename
+      // req.body.image = req.file.filename
+      if (req.file) req.body.image = req.file.path
 
       const user = await User.findByIdAndUpdate(_id, req.body, {new: true}).select('-__v -pass')
 
@@ -113,6 +149,37 @@ router.patch('/profile', uploadAdvanced.single('image'), async (req, res) => {
   } catch (error) {
       
       console.log('Register ERROR:', error.message)
+      res.send(error.message)
+  }
+})
+
+router.patch('/profilecloudinary', uploadCloudinary.single('image'), async (req, res) => {
+
+  try {
+      
+      console.log('req.body CLOUDINARY is', req.body)
+      console.log('req.file CLOUDINARY is', req.file)
+
+      const {email, username, _id} = req.body
+
+      if (!(email || username)) return res.send({success: false, errorId: 1})
+
+      // const foundUser = await User.findById({_id})
+      // 
+      // update users (field1, field2) set field1 = email and field2 = username
+
+      req.body.image = req.file.path
+
+      const user = await User.findByIdAndUpdate(_id, req.body, {new: true}).select('-__v -pass')
+
+      console.log('Profile: user CLOUDINARY is', user)
+
+      if (!user) return res.send({success: false, errorId: 2})
+
+      res.send({success: true, user})
+  } catch (error) {
+      
+      console.log('Register CLOUDINARY ERROR:', error.message)
       res.send(error.message)
   }
 })
