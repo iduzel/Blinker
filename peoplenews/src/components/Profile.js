@@ -10,7 +10,8 @@ export default function Profile() {
   const { userData, setUserData } = useContext(UserContext);
   const [data, setData] = useState({
     age: 0,
-    address: "",
+    address: ""
+  
   });
 
   const [fileUrl, setFileUrl] = useState("");
@@ -67,7 +68,16 @@ export default function Profile() {
 
       <Row className="border border-dotted p-5">
         <Col className="">
-          {" "}
+        <div>
+            <label>Fullname</label>
+            <br />
+            <input
+              className="profile-input w-100 rounded border border border-info mb-2"
+             /*  type="number"
+              value={data?.age}
+              onChange={(e) => setData({ ...data, age: e.target.value })} */
+            />
+          </div>
           <div>
             <label>Email</label>
             <br />
@@ -103,6 +113,16 @@ export default function Profile() {
             className="profile-input w-100 rounded border border border-info mb-2"
               value={data?.address}
               onChange={(e) => setData({ ...data, address: e.target.value })}
+            />
+          </div>
+          <div>
+            <label>Phone</label>
+            <br />
+            <input
+              className="profile-input w-100 rounded border border border-info mb-2"
+              type="number"
+              /* value={data?.age}
+              onChange={(e) => setData({ ...data, age: e.target.value })} */
             />
           </div>
         </Col>
