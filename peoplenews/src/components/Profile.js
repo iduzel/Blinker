@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "./context";
 import { Row, Col } from "react-bootstrap";
 
 export default function Profile() {
+
+    const navigate = useNavigate()
   const { userData, setUserData } = useContext(UserContext);
   const [data, setData] = useState({
     age: 0,
@@ -41,6 +43,9 @@ export default function Profile() {
     console.log("response from profile is", response);
 
     if (response.data.success) setUserData({ ...response.data.user });
+
+    navigate('/home')
+
   };
 
   const handleImageChange = (e) => {
