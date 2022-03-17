@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Col, Nav, OverlayTrigger, Row } from "react-bootstrap";
+import { Col, Nav,  Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "./context";
 import logo from "../components/pictures/5.jpg";
@@ -19,13 +19,11 @@ const Navbar = () => {
     setShowClass("hide");
   };
 
-  const handleUsernameLogout = () => {
-    setLogoutClass("show");
-  };
+
   return (
     <div className="navbar-logo fs-1 fw-bold mt-5 shadow-lg">
       <Row>
-        <Col className="col-3 ps-5 ">
+        <Col className="col-3  ps-5 ">
           <Nav className="container d-flex ">
             <Link to="/home">
               {" "}
@@ -33,11 +31,11 @@ const Navbar = () => {
             </Link>
           </Nav>
         </Col>
-        <Col className="main-title color font-family  d-flex justify-content-center align-items-center">You are the news</Col>
+        <Col className="col-md-3 col-lg-6 main-title color font-family  d-flex justify-content-center align-items-center">You are the news</Col>
 
-        <Col
+        <Col className="me-5  userloginout col-3  d-flex flex-column justify-content-center align-items-center shadow-lg "
           onMouseLeave={() => setLogoutClass("hide")}
-          className="me-5  userloginout col-3  d-flex flex-column justify-content-center align-items-center shadow-lg "
+         
         >
           <h2
             style={{ color: "#61B7DE" }}
@@ -56,10 +54,11 @@ const Navbar = () => {
             onMouseLeave={() => setLogoutClass("hide")}
             className={logoutClass}
           >
+            
             <Link className="text-decoration-none" to="/profile">
-              <h3>Profile</h3>
+              <h3 className=" border-bottom">Profile</h3>
             </Link>
-            <h3 onClick={handleLogout}>Logout </h3>
+            <h3 className="border-bottom" onClick={handleLogout}>Logout </h3>
           </div>
         </Col>
       </Row>
