@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
 const connectToDb = require('./config/db')
 connectToDb() 
 
+app.use(express.static('./server/uploads'))
 
 const port = process.env.PORT || 8080
 
